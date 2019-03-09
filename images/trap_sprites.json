@@ -1,0 +1,45 @@
+{
+"frames": {
+	"trap_01.png": {
+		"frame": {"x":0, "y":148, "w":288, "h":147},
+		"spriteSourceSize": {"x":0,"y":0,"w":288,"h":147},
+		"sourceSize": {"w":288,"h":147}
+	},
+	"trap_02.png": {
+		"frame": {"x":0, "y":0, "w":288, "h":147},
+		"spriteSourceSize": {"x":0,"y":0,"w":288,"h":147},
+		"sourceSize": {"w":288,"h":147}
+	},
+	"trap_03.png": {
+		"frame": {"x":0, "y":296, "w":78, "h":87},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":87},
+		"sourceSize": {"w":78,"h":87}
+	},
+	"trap_04.png": {
+		"frame": {"x":289, "y":0, "w":144, "h":234},
+		"spriteSourceSize": {"x":0,"y":0,"w":144,"h":234},
+		"sourceSize": {"w":144,"h":234}
+	},
+	"trap_05.png": {
+		"frame": {"x":289, "y":235, "w":99, "h":234},
+		"spriteSourceSize": {"x":0,"y":0,"w":99,"h":234},
+		"sourceSize": {"w":99,"h":234}
+	},
+	"trap_06.png": {
+		"frame": {"x":158, "y":296, "w":48, "h":87},
+		"spriteSourceSize": {"x":0,"y":0,"w":48,"h":87},
+		"sourceSize": {"w":48,"h":87}
+	},
+	"trap_07.png": {
+		"frame": {"x":79, "y":296, "w":78, "h":120},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":120},
+		"sourceSize": {"w":78,"h":120}
+	}
+
+},
+"meta": {
+	"image": "trap_sprites.png",
+	"size": {"w": 434, "h": 470},
+	"scale": "1"
+}
+}

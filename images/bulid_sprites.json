@@ -1,0 +1,50 @@
+{
+"frames": {
+	"builds_01.png": {
+		"frame": {"x":0, "y":343, "w":465, "h":342},
+		"spriteSourceSize": {"x":0,"y":0,"w":465,"h":342},
+		"sourceSize": {"w":465,"h":342}
+	},
+	"builds_02.png": {
+		"frame": {"x":466, "y":343, "w":210, "h":420},
+		"spriteSourceSize": {"x":0,"y":0,"w":210,"h":420},
+		"sourceSize": {"w":210,"h":420}
+	},
+	"builds_03.png": {
+		"frame": {"x":677, "y":343, "w":126, "h":342},
+		"spriteSourceSize": {"x":0,"y":0,"w":126,"h":342},
+		"sourceSize": {"w":126,"h":342}
+	},
+	"builds_04.png": {
+		"frame": {"x":804, "y":343, "w":126, "h":342},
+		"spriteSourceSize": {"x":0,"y":0,"w":126,"h":342},
+		"sourceSize": {"w":126,"h":342}
+	},
+	"builds_05.png": {
+		"frame": {"x":547, "y":0, "w":132, "h":342},
+		"spriteSourceSize": {"x":0,"y":0,"w":132,"h":342},
+		"sourceSize": {"w":132,"h":342}
+	},
+	"builds_06.png": {
+		"frame": {"x":0, "y":686, "w":174, "h":333},
+		"spriteSourceSize": {"x":0,"y":0,"w":174,"h":333},
+		"sourceSize": {"w":174,"h":333}
+	},
+	"builds_07.png": {
+		"frame": {"x":680, "y":0, "w":126, "h":342},
+		"spriteSourceSize": {"x":0,"y":0,"w":126,"h":342},
+		"sourceSize": {"w":126,"h":342}
+	},
+	"builds_08.png": {
+		"frame": {"x":0, "y":0, "w":546, "h":342},
+		"spriteSourceSize": {"x":0,"y":0,"w":546,"h":342},
+		"sourceSize": {"w":546,"h":342}
+	}
+
+},
+"meta": {
+	"image": "bulid_sprites.png",
+	"size": {"w": 931, "h": 1020},
+	"scale": "1"
+}
+}

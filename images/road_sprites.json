@@ -1,0 +1,20 @@
+{
+"frames": {
+	"road_01.png": {
+		"frame": {"x":151, "y":0, "w":149, "h":234},
+		"spriteSourceSize": {"x":0,"y":0,"w":149,"h":234},
+		"sourceSize": {"w":149,"h":234}
+	},
+	"road_02.png": {
+		"frame": {"x":0, "y":0, "w":150, "h":234},
+		"spriteSourceSize": {"x":0,"y":0,"w":150,"h":234},
+		"sourceSize": {"w":150,"h":234}
+	}
+
+},
+"meta": {
+	"image": "road_sprites.png",
+	"size": {"w": 301, "h": 235},
+	"scale": "1"
+}
+}
