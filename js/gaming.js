@@ -1,17 +1,29 @@
 Gaming = function() {
-    stage.gaming = new PIXI.Container();
+    this.gaming = new PIXI.Container();
     this.leval_speed = 1;
-    this.gaming_bg = new Gaming_bg();
-    this.road_create = new Road_create();
+    this.gaming_bg = new Gaming_bg(this.gaming);
+    this.road_create = new Road_create(this.gaming);
 
-    this.trap = new Trap();
-    this.player = new Player();
+    this.trap = new Trap(this.gaming);
+    this.player = new Player(this.gaming);
 
-    stage.gaming.children.sort(function(a, b) {
+    this.gaming.children.sort(function(a, b) {
         a.zIndex = a.zIndex || 0;
         b.zIndex = b.zIndex || 0;
         return b.zIndex - a.zIndex
     });
+
+
+this.gaming.interactive = true;
+
+  this.gaming.on('pointerdown', function() {
+        controller.screen_click.active = true;
+    });
+
+    this.gaming.on('pointerup', function() {
+        controller.screen_click.active = false;
+    });
+     
 }
 
 
@@ -33,11 +45,10 @@ Gaming.prototype.update = function() {
             this.trap.addtrap(0);
     }
 
-    this.player.ground = this.road_create.ground;
     this.player.setground(this.trap.getground());
     this.player.update(this.leval_speed);
 
-    renderer.render(stage.gaming);
+    renderer.render(this.gaming);
 }
 
 Gaming.prototype.die = function() {

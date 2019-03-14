@@ -43,15 +43,5 @@ controller = { //控制器
 
 };
 
- stage.gaming.interactive = true;
-
-    stage.gaming.on('pointerdown', function() {
-        controller.screen_click.active = true;
-    });
-
-     stage.gaming.on('pointerup', function() {
-        controller.screen_click.active = false;
-    });
-     
 window.addEventListener("keydown", controller.keyUpDown);
 window.addEventListener("keyup", controller.keyUpDown);

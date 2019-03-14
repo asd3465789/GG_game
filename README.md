@@ -1,1 +1,1 @@
-# GG_game.io
+# gg_web_game

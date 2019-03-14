@@ -1,4 +1,4 @@
-Ui_bg_gg=function(){
+Ui_bg_gg=function(menu){
 
     var farTexture = PIXI.Texture.fromImage("bg_gg");
     this.bg = new PIXI.extras.TilingSprite(farTexture, app.screen.width, app.screen.height);
@@ -6,7 +6,7 @@ Ui_bg_gg=function(){
     this.bg.position.y = 0;
     this.bg.tilePosition.x = 0;
     this.bg.tilePosition.y = 0;
-    stage.menu.addChild(this.bg);
+    menu.addChild(this.bg);
 
 }
 

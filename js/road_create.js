@@ -1,4 +1,4 @@
-Road_create = function() {
+Road_create = function(gaming) {
     var all_road = [];
 
     for (var i = 1; i < 2; i++) {
@@ -18,7 +18,7 @@ Road_create = function() {
     this.bg.position.y = 500;
     this.bg.tilePosition.x = 0;
     this.bg.tilePosition.y = 0;
-    stage.gaming.addChild(this.bg);
+    gaming.addChild(this.bg);
 }
 
 Road_create.prototype.update=function(speed){

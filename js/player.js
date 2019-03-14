@@ -1,6 +1,20 @@
-Player = function() {
+Player = function(gaming) {
 
+    switch (who) {
+        case 1:
+            this.whoname = 'gg';
+            this.ground = 480;
+            break;
+        case 2:
+            this.whoname = 'pug';
+            this.ground = 510;
+            break;
+        case 3:
+            this.whoname = 'boy';
+            break;
+    }
 
+    this.gaming = gaming;
     var frames_run = [],
         frames_idle = [],
         frames_jumpup = [],
@@ -8,50 +22,40 @@ Player = function() {
 
     for (var i = 5; i < 13; i++) {
         var val = i < 10 ? '0' + i : i;
-        frames_run.push(PIXI.Texture.fromFrame('gg_run_' + val + '.png'));
+        frames_run.push(PIXI.Texture.fromFrame(this.whoname + '_run_' + val + '.png'));
     }
-    frames_idle.push(PIXI.Texture.fromFrame('gg_run_01.png'));
-    frames_idle.push(PIXI.Texture.fromFrame('gg_run_02.png'));
-    frames_jumpup.push(PIXI.Texture.fromFrame('gg_run_03.png'));
-    frames_jumpdown.push(PIXI.Texture.fromFrame('gg_run_04.png'));
+    frames_idle.push(PIXI.Texture.fromFrame(this.whoname + '_run_01.png'));
+    frames_idle.push(PIXI.Texture.fromFrame(this.whoname + '_run_02.png'));
+    frames_jumpup.push(PIXI.Texture.fromFrame(this.whoname + '_run_03.png'));
+    frames_jumpdown.push(PIXI.Texture.fromFrame(this.whoname + '_run_04.png'));
 
-    this.anim_run = create_animation(frames_run);
+    this.anim_run = this.create_animation(frames_run);
 
     // this.anim_idle=create_animation(frames_idle);
 
-    this.anim_jumpup = create_animation(frames_jumpup);
+    this.anim_jumpup = this.create_animation(frames_jumpup);
 
-    this.anim_jumpdown = create_animation(frames_jumpdown);
+    this.anim_jumpdown = this.create_animation(frames_jumpdown);
 
     this.x_velocity = 0;
     this.y_velocity = 0;
     this.x = 360;
     this.y = app.screen.height / 2;
-   
 
- stage.gaming.interactive = true;
 
-    stage.gaming.on('pointerdown', function() {
-        controller.screen_click.active = true;
-    });
 
-     stage.gaming.on('pointerup', function() {
-        controller.screen_click.active = false;
-    });
-     
     this.isJump = false;
     this.isdie = false;
-    this.ground = 480;
 }
 
-create_animation = function(anim_in, speed) {
+Player.prototype.create_animation = function(anim_in, speed) {
     var anim = new PIXI.extras.AnimatedSprite(anim_in);
     anim.zIndex = -1;
 
     anim.animationSpeed = 0.2;
     anim.anchor.set(0.5);
     anim.play();
-    stage.gaming.addChild(anim);
+    this.gaming.addChild(anim);
     anim.visible = false;
     return anim;
 }
@@ -75,7 +79,7 @@ Player.prototype.update = function(speed) {
     console.log(controller.screen_click.active);
 
     if ((controller.space.active || controller.screen_click.active) && !this.isJump) {
-      
+
         this.y_velocity -= 50;
         this.isJump = true;
 
