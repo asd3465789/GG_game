@@ -46,6 +46,9 @@ Player = function(gaming) {
 
     this.isJump = false;
     this.isdie = false;
+
+    loader.resources.jump_se.data.volume=SE_maxvolume;
+    loader.resources.jump_se.data.playbackRate=1.2;
 }
 
 Player.prototype.create_animation = function(anim_in, speed) {
@@ -76,10 +79,10 @@ Player.prototype.die = function() {
 
 Player.prototype.update = function(speed) {
 
-    console.log(controller.screen_click.active);
 
     if ((controller.space.active || controller.screen_click.active) && !this.isJump) {
 
+       loader.resources.jump_se.data.play();
         this.y_velocity -= 50;
         this.isJump = true;
 
@@ -118,10 +121,11 @@ Player.prototype.update = function(speed) {
     this.anim_run.animationSpeed = 0.12 * speed;
 
     if (this.y > this.ground + 10) {
-
+        
         this.isdie = true;
-    }
-
+    }else if (this.y < this.ground + 1 && this.y>this.ground)
+     this.y=this.ground;
+     
     this.x += this.x_velocity;
     if (this.y_velocity < -15)
         this.y += -15;
