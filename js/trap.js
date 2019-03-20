@@ -1,5 +1,6 @@
 Trap = function(gaming) {
-    this.traps_container = new PIXI.Container();
+    this.container = new PIXI.Container();
+    this.container.zIndex = -2;
     this.gaming = gaming;
 
     switch (who) {
@@ -23,7 +24,7 @@ Trap = function(gaming) {
     this.player_pos = 0;
     this.trap_num = 0;
 
-    this.alltraps_width = 800;
+    this.alltraps_width = 1000;
 
     for (var i = 1; i < 8; i++) {
         var val = i < 10 ? '0' + i : i;
@@ -40,18 +41,16 @@ Trap.prototype.get_trap_num = function() {
 Trap.prototype.addtrap = function(ID) {
 
     var Texture = new PIXI.Sprite(this.traps[ID]);
-    Texture.zIndex = -3;
     this.trap_num += 1;
-    Texture.anchor.set(0, 0);
+    Texture.anchor.set(0, 1);
 
-    this.traps_container.addChild(Texture);
-    if (this.alltraps_width > Math.abs(this.traps_container.x) + 1300)
+    this.container.addChild(Texture);
+    if (this.alltraps_width > Math.abs(this.container.x) + 1300)
         Texture.x = this.alltraps_width;
     else {
-        Texture.x = Math.abs(this.traps_container.x) + 1300;
-        this.alltraps_width = Math.abs(this.traps_container.x) + 1300;
+        Texture.x = Math.abs(this.container.x) + 1300;
+        this.alltraps_width = Math.abs(this.container.x) + 1300;
     }
-
 
     switch (ID) {
         case 0:
@@ -67,7 +66,7 @@ Trap.prototype.addtrap = function(ID) {
             break;
     }
 
-    this.gaming.addChild(this.traps_container);
+    this.gaming.addChild(this.container);
 
     this.gaming.children.sort(function(a, b) {
         a.zIndex = a.zIndex || 0;
@@ -90,8 +89,8 @@ Trap.prototype.getground = function() {
 
 Trap.prototype.update = function(speed) {
 
-    this.ontrap_pos = this.traps_container.getChildAt(this.ontrapID).x;
-    this.player_pos = Math.abs(this.traps_container.x) + 360;
+    this.ontrap_pos = this.container.getChildAt(this.ontrapID).x;
+    this.player_pos = Math.abs(this.container.x) + 360;
 
     if (this.player_pos > this.ontrap_pos && this.player_pos < this.ontrap_pos + trap_type.car_w) {
         this.ground = this.rest_ground - trap_type.car_h;
@@ -106,8 +105,8 @@ Trap.prototype.update = function(speed) {
         }
     }
 
-    if (this.traps_container.getChildAt(0).x < this.player_pos - 650 && this.ontrapID != 0) {
-        this.traps_container.removeChildAt(0);
+    if (this.container.getChildAt(0).x < this.player_pos - 650 && this.ontrapID != 0) {
+        this.container.removeChildAt(0);
         this.ontrapID -= 1;
         this.trap_num -= 1;
 
@@ -116,5 +115,5 @@ Trap.prototype.update = function(speed) {
 
 
 
-    this.traps_container.x -= 2 * speed;
+    this.container.x -= 2 * speed;
 }

@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <head>
     <title>GG_webgame</title>
     <link rel="stylesheet" type="text/css" href="./css/main.css">
-
- <style>
-        @font-face{
-            font-family: "pixel";
-            src: url("./font/FFFFORWA.ttf");
-        }
- </style>
-
+    <style>
+    @font-face {
+        font-family: "pixel";
+        src: url("./font/FFFFORWA.ttf");
+    }
+     @font-face {
+        font-family: "jackeyfont";
+        src: url("./font/WT040_1.ttf");
+    }
+    </style>
     <script>
-window.addEventListener("load",function() {
+    window.addEventListener("load", function() {
 
-  setTimeout(function(){
-  window.scrollTo(0, 1); }, 10);
-});
-</script> 
+        setTimeout(function() {
+            window.scrollTo(0, 1);
+        }, 10);
+    });
+    </script>
 </head>
 
 <body onload="init();">
@@ -26,17 +30,20 @@ window.addEventListener("load",function() {
     <script src="./js/menu.js"></script>
     <script src="./js/gaming.js"></script>
     <script src="./js/chose.js"></script>
+    <script src="./js/End.js"></script>
     <script src="./js/player.js"></script>
     <script src="./js/keyboard.js"></script>
     <script src="./js/UI_bg_gg.js"></script>
     <script src="./js/gaming_bg.js"></script>
     <script src="./js/road_create.js"></script>
-
+    <script src="./js/Volume_control.js"></script>
+    <script src="./js/transition.js"></script>
+    <script src="./js/Long_shot.js"></script>
     <script src="./js/trap.js"></script>
     <script src="./js/main.js"></script>
     <div>
         <script>
-         init=function() {
+        init = function() {
             main = new Main();
         }
         </script>

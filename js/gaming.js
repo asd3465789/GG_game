@@ -1,37 +1,49 @@
 Gaming = function() {
 
 
-    loader.resources.gaming_bgm.data.volume=BGM_maxvolume;
+    loader.resources.gaming_bgm.data.volume = BGM_maxvolume;
+    loader.resources.gaming_bgm.data.loop = true;
     loader.resources.gaming_bgm.data.play();
 
     this.gaming = new PIXI.Container();
     this.leval_speed = 1;
     this.gaming_bg = new Gaming_bg(this.gaming);
     this.road_create = new Road_create(this.gaming);
-
+    this.long_shot = new Long_shot(this.gaming);
     this.trap = new Trap(this.gaming);
     this.player = new Player(this.gaming);
 
-    this.gaming.children.sort(function(a, b) {
-        a.zIndex = a.zIndex || 0;
-        b.zIndex = b.zIndex || 0;
-        return b.zIndex - a.zIndex
-    });  
 
-var style = new PIXI.TextStyle({
-    fontFamily: 'pixel ,Arial',
-    fontSize: 36,
-    fontWeight: 800,
-    fill: ['#FF5511'], // gradient
-});
 
-    this.speed_text= new PIXI.Text("",style);
-    this.speed_text.x=1020;
-    this.speed_text.y=50;
+    this.timer = 0;
 
+    var speed_style = new PIXI.TextStyle({
+        fontFamily: 'pixel ,Arial',
+        fontSize: 32,
+        fontWeight: 800,
+        fill: ['#FF5511'], // gradient
+    });
+
+    this.speed_text = new PIXI.Text("", speed_style);
+    this.speed_text.x = 1020;
+    this.speed_text.y = 50;
+    this.speed_text.zIndex = -5;
     this.gaming.addChild(this.speed_text);
 
-  switch (who) {
+    this.score = 0;
+    var score_style = new PIXI.TextStyle({
+        fontFamily: 'pixel ,Arial',
+        fontSize: 48,
+        fontWeight: 800,
+        fill: ['#FF0088'], // gradient
+    });
+    this.score_text = new PIXI.Text("", score_style);
+    this.score_text.x = 200;
+    this.score_text.y = 50;
+    this.score_text.zIndex = -5;
+    this.gaming.addChild(this.score_text);
+
+    switch (who) {
         case 1:
             this.whoname = 'gg';
             this.ground = 480;
@@ -41,35 +53,47 @@ var style = new PIXI.TextStyle({
             this.ground = 510;
             break;
         case 3:
-            this.whoname = 'boy';
+            this.whoname = 'negative';
+            this.ground = 480;
             break;
     }
 
-    this.player_face = PIXI.Sprite.fromImage(this.whoname+'_face');
+    this.player_face = PIXI.Sprite.fromImage(this.whoname + '_face');
     this.player_face.anchor.set(0.5);
     this.player_face.x = 120;
     this.player_face.y = 100;
     this.player_face.scale.x = 0.4;
     this.player_face.scale.y = 0.4;
     this.gaming.addChild(this.player_face);
-this.gaming.interactive = true;
+    this.gaming.interactive = true;
 
-  this.gaming.on('pointerdown', function() {
+    this.gaming.on('pointerdown', function() {
         controller.screen_click.active = true;
     });
 
     this.gaming.on('pointerup', function() {
         controller.screen_click.active = false;
     });
-     
-} 
+    this.transition = new Transition(this.gaming, -1, false);
+
+    this.gaming.children.sort(function(a, b) {
+        a.zIndex = a.zIndex || 0;
+        b.zIndex = b.zIndex || 0;
+        return b.zIndex - a.zIndex
+    });
+    this.speed_text.text = '0 km/hr';
+ this.score_text.text = "0";
+}
 
 
 Gaming.prototype.update = function() {
+    this.timer++;
+
     this.gaming_bg.update(this.leval_speed);
     this.leval_speed += 0.001;
     this.road_create.update(this.leval_speed);
     this.trap.update(this.leval_speed);
+    this.long_shot.update(this.leval_speed);
 
     if (this.player.die()) {
         this.die();
@@ -83,16 +107,29 @@ Gaming.prototype.update = function() {
             this.trap.addtrap(0);
     }
 
+
     this.player.setground(this.trap.getground());
     this.player.update(this.leval_speed);
-    
-    this.speed_text.text=Math.floor(this.leval_speed*10-9) +'km/hr';
+
+    this.score = Math.floor(this.timer / 100) * 100 * Math.floor(this.leval_speed * 10 - 9);
+    if (this.score > 0 && Math.floor(this.leval_speed * 10 - 9) > 0) {
+
+        this.speed_text.text = Math.floor(this.leval_speed * 10 - 9) + 'km/hr';
+        this.score_text.text = this.score;
+        score=this.score;
+    }
+
+
     renderer.render(this.gaming);
+}
+
+Gaming.prototype.getscore = function() {
+    return this.score;
 }
 
 Gaming.prototype.die = function() {
     this.leval_speed = 0;
     loader.resources.gaming_bgm.data.pause();
     loader.resources.gaming_bgm.data.currentTime = 0;
-    scens_ID = scens.menu;
+    this.transition = new Transition(this.gaming, scens.end, true);
 }

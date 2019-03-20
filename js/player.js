@@ -10,7 +10,8 @@ Player = function(gaming) {
             this.ground = 510;
             break;
         case 3:
-            this.whoname = 'boy';
+            this.whoname = 'negative';
+            this.ground = 480;
             break;
     }
 
@@ -46,14 +47,17 @@ Player = function(gaming) {
 
     this.isJump = false;
     this.isdie = false;
+    this.isdying = false;
+    this.isdead = false;
 
-    loader.resources.jump_se.data.volume=SE_maxvolume;
-    loader.resources.jump_se.data.playbackRate=1.2;
+    loader.resources.jump_se.data.volume = SE_maxvolume;
+    loader.resources.jump_se.data.playbackRate = 1.2;
+    loader.resources.dead_se.data.volume = SE_maxvolume;
 }
 
 Player.prototype.create_animation = function(anim_in, speed) {
     var anim = new PIXI.extras.AnimatedSprite(anim_in);
-    anim.zIndex = -1;
+    anim.zIndex = -3;
 
     anim.animationSpeed = 0.2;
     anim.anchor.set(0.5);
@@ -73,63 +77,93 @@ Player.prototype.setground = function(g) {
 }
 
 Player.prototype.die = function() {
-    return this.isdie;
+    return this.isdead;
 }
 
 
 Player.prototype.update = function(speed) {
 
+    if (!this.isdie) {
+        if ((controller.space.active || controller.screen_click.active) && !this.isJump) {
 
-    if ((controller.space.active || controller.screen_click.active) && !this.isJump) {
-
-       loader.resources.jump_se.data.play();
-        this.y_velocity -= 50;
-        this.isJump = true;
-
-    }
-
-    if (this.y >= this.ground && this.y_velocity >= 0) {
-        this.y_velocity = 0;
-        this.isJump = false;
-        this.anim_run.visible = true;
-        this.anim_jumpup.visible = false;
-        this.anim_jumpdown.visible = false;
-        this.set_anim(this.anim_run);
-
-    } else {
-
-        if (this.y_velocity < 0) {
-            this.anim_run.visible = false;
-            this.anim_jumpup.visible = true;
-            this.anim_jumpdown.visible = false;
-
-            this.set_anim(this.anim_jumpup);
-
-        } else {
-            this.anim_run.visible = false;
-            this.anim_jumpup.visible = false;
-            this.anim_jumpdown.visible = true;
-
-            this.set_anim(this.anim_jumpdown);
+            loader.resources.jump_se.data.play();
+            this.y_velocity -= 50;
+            this.isJump = true;
 
         }
 
-        this.y_velocity += 0.9;
+        if (this.y >= this.ground && this.y_velocity >= 0) {
+            this.y_velocity = 0;
+            controller.screen_click.active = false;
+            this.isJump = false;
+            this.anim_run.visible = true;
+            this.anim_jumpup.visible = false;
+            this.anim_jumpdown.visible = false;
+            this.set_anim(this.anim_run);
 
+        } else {
+
+            if (this.y_velocity < 0) {
+                this.anim_run.visible = false;
+                this.anim_jumpup.visible = true;
+                this.anim_jumpdown.visible = false;
+
+                this.set_anim(this.anim_jumpup);
+
+            } else {
+                this.anim_run.visible = false;
+                this.anim_jumpup.visible = false;
+                this.anim_jumpdown.visible = true;
+
+                this.set_anim(this.anim_jumpdown);
+
+            }
+
+            this.y_velocity += 0.9;
+
+        }
+
+        this.anim_run.animationSpeed = 0.12 * speed;
+
+        if (this.y > this.ground + 10) {
+
+            this.isdie = true;
+        } else if (this.y < this.ground + 1 && this.y > this.ground)
+            this.y = this.ground;
+
+        this.x += this.x_velocity;
+        if (this.y_velocity < -15)
+            this.y += -15;
+        else this.y += this.y_velocity;
+
+
+    } else {
+
+        if (!this.isdying) {
+            this.isdying = true;
+            this.y_velocity -= 50;
+
+            this.anim_run.visible = true;
+            this.anim_jumpup.visible = false;
+            this.anim_jumpdown.visible = false;
+            loader.resources.gaming_bgm.data.pause();
+            loader.resources.dead_se.data.play();
+            
+        } else {
+
+            this.anim_run.rotation +=0.05 ;
+            this.y_velocity += 1.5;
+            
+            if (this.y_velocity < -15)
+                this.y += -15;
+            else
+                this.y += this.y_velocity;
+            this.set_anim(this.anim_run);
+            if (this.y > 720)
+                this.isdead = true;
+        }
     }
 
-    this.anim_run.animationSpeed = 0.12 * speed;
-
-    if (this.y > this.ground + 10) {
-        
-        this.isdie = true;
-    }else if (this.y < this.ground + 1 && this.y>this.ground)
-     this.y=this.ground;
-     
-    this.x += this.x_velocity;
-    if (this.y_velocity < -15)
-        this.y += -15;
-    else this.y += this.y_velocity;
 
     this.x_velocity *= 0.9;
     this.y_velocity *= 0.9;
