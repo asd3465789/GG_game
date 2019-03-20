@@ -5,7 +5,7 @@ loader = app.loader;
 BGM_maxvolume = 0.7;
 SE_maxvolume = 0.7;
 
-score=7000000;
+score=0;
 
 scens = {
     loading: 0,
@@ -18,7 +18,7 @@ scens = {
 Main = function() {
 
     app.renderer.autoResize = true;
-    scens_ID = scens.end; //1=menu 2=chose_player 3=gaming 
+    scens_ID = scens.menu; //1=menu 2=chose_player 3=gaming 
     last_ID = -1; //-1=no scens
     who = 1;
     document.body.appendChild(app.view);
