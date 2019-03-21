@@ -1,7 +1,9 @@
 Volume_control = function(container){
 	this.container=container;
-	
+	if(BGM_maxvolume>0)
     this.volume_button = PIXI.Sprite.fromImage('Volume');
+else
+	this.volume_button = PIXI.Sprite.fromImage('No_Volume');
     this.volume_button.anchor.set(0.5);
     this.volume_button.x = 1230;
     this.volume_button.y = 50;

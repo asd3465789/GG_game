@@ -34,18 +34,16 @@ End = function() {
     }
 
     var tale_style = new PIXI.TextStyle({
-        fontFamily: 'jackeyfont ,Arial',
+        fontFamily: 'Arial',
         fontSize: 36,
         fontWeight: 'bold',
-        fontWeight: 400,
-        fontHeight: 400,
         fill: ['#FFFFFF'],
     });
     this.score_text = new PIXI.Text("分數 : " + score, tale_style);
     this.score_text.x = 500;
     this.score_text.y = 420;
     this.score_text.style.lineHeight = 80;
-    this.score_text.zIndex = -5;
+  //  this.score_text.zIndex = -5;
     this.container.addChild(this.score_text);
     this.transition = new Transition(this.container, -1, false);
 
@@ -53,7 +51,7 @@ End = function() {
     this.leval_text.x = 840;
     this.leval_text.y = 420;
     this.leval_text.style.lineHeight = 80;
-    this.leval_text.zIndex = -5;
+  //  this.leval_text.zIndex = -5;
     this.container.addChild(this.leval_text);
     this.transition = new Transition(this.container, -1, false);
 

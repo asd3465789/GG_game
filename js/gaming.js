@@ -18,7 +18,7 @@ Gaming = function() {
     this.timer = 0;
 
     var speed_style = new PIXI.TextStyle({
-        fontFamily: 'pixel ,Arial',
+        fontFamily: 'Arial',
         fontSize: 32,
         fontWeight: 800,
         fill: ['#FF5511'], // gradient
@@ -27,21 +27,24 @@ Gaming = function() {
     this.speed_text = new PIXI.Text("", speed_style);
     this.speed_text.x = 1020;
     this.speed_text.y = 50;
+    this.speed_text.style.lineHeight = 80;
     this.speed_text.zIndex = -5;
     this.gaming.addChild(this.speed_text);
 
     this.score = 0;
     var score_style = new PIXI.TextStyle({
-        fontFamily: 'pixel ,Arial',
+        fontFamily: 'Arial',
         fontSize: 48,
-        fontWeight: 800,
-        fill: ['#FF0088'], // gradient
+        fill: ['#FF0088'], 
     });
     this.score_text = new PIXI.Text("", score_style);
     this.score_text.x = 200;
-    this.score_text.y = 50;
+    this.score_text.y = 50;    
+    this.score_text.style.lineHeight = 80;
     this.score_text.zIndex = -5;
     this.gaming.addChild(this.score_text);
+
+    console.log(this.score_text);
 
     switch (who) {
         case 1:
@@ -57,6 +60,7 @@ Gaming = function() {
             this.ground = 480;
             break;
     }
+
 
     this.player_face = PIXI.Sprite.fromImage(this.whoname + '_face');
     this.player_face.anchor.set(0.5);
