@@ -1,6 +1,6 @@
 Menu = function() {
     loader.resources.menu_bgm.data.BGM_volume = 0;
-    loader.resources.menu_bgm.data.loop = true;
+  //  loader.resources.menu_bgm.data.loop = true;
     loader.resources.menu_bgm.data.play();
 
     this.menu = new PIXI.Container();
