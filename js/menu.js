@@ -60,5 +60,5 @@ Menu.prototype.update = function() {
         loader.resources.menu_bgm.data.volume = BGM_maxvolume;
 
     renderer.render(this.container);
-    
+
 }

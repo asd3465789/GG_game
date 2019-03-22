@@ -14,7 +14,7 @@ Player = function(gaming) {
             this.ground = 480;
             break;
     }
-
+this.deadline=this.ground;
     this.gaming = gaming;
     var frames_run = [],
         frames_idle = [],
@@ -72,8 +72,9 @@ Player.prototype.set_anim = function(anim) {
     anim.y = this.y;
 }
 
-Player.prototype.setground = function(g) {
+Player.prototype.setground = function(g,deadline) {
     this.ground = g;
+    this.deadline=deadline;
 }
 
 Player.prototype.die = function() {
@@ -125,11 +126,10 @@ Player.prototype.update = function(speed) {
 
         this.anim_run.animationSpeed = 0.12 * speed;
 
-        if (this.y > this.ground + 10) {
+        if (this.y > this.deadline + 10) {
 
             this.isdie = true;
-        } else if (this.y < this.ground + 1 && this.y > this.ground)
-            this.y = this.ground;
+        }
 
         this.x += this.x_velocity;
         if (this.y_velocity < -15)

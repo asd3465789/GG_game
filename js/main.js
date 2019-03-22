@@ -5,20 +5,21 @@ loader = app.loader;
 BGM_maxvolume = 0.7;
 SE_maxvolume = 0.7;
 
-score=0;
+score = 0;
 
 scens = {
     loading: 0,
     menu: 1,
-    chose: 2,
-    gaming: 3,
-    end: 4
+    story: 2,
+    chose: 3,
+    gaming: 4,
+    end: 5
 };
 
 Main = function() {
 
     app.renderer.autoResize = true;
-    scens_ID = scens.menu; //1=menu 2=chose_player 3=gaming 
+    scens_ID = scens.menu;
     last_ID = -1; //-1=no scens
     who = 1;
     document.body.appendChild(app.view);
@@ -65,10 +66,14 @@ Main.prototype.loading = function() {
     loader.add("GG_title", "images/start_gg.png");
     loader.add("Volume", "images/UI/volume.png");
     loader.add("No_Volume", "images/UI/no_volume.png");
+    loader.add("house", "images/house.png");
+
+    loader.add("gg_talk", "images/GG_talk.png");
+    loader.add("brother_talk", "images/Brother_talk.png");
 
     loader.add("restart_BT", "images/UI/restart_button.png");
-loader.add("backmenu_BT", "images/UI/backmenu_button.png");
-loader.add("web_BT", "images/UI/web_button.png");
+    loader.add("backmenu_BT", "images/UI/backmenu_button.png");
+    loader.add("web_BT", "images/UI/web_button.png");
 
 
     loader.add("end_face1", "images/end_face1.png");
@@ -96,12 +101,11 @@ loader.add("web_BT", "images/UI/web_button.png");
 }
 
 function loadProgressHandler(loader, resource) {
-    loading=new Loading(loader.progress);
+    loading = new Loading(loader.progress);
+    /*
     console.log("loading: " + resource.url);
-
     console.log("progress: " + loader.progress + "%");
-
-    console.log("loading: " + resource.name);
+    console.log("loading: " + resource.name);*/
 }
 
 Main.prototype.setup = function() {
@@ -110,7 +114,7 @@ Main.prototype.setup = function() {
 
 Main.prototype.update = function() {
 
-    switch (scens_ID) {      
+    switch (scens_ID) {
         case scens.menu:
             if (scens_ID != last_ID) {
                 menu = new Menu();
@@ -118,8 +122,14 @@ Main.prototype.update = function() {
             }
             menu.update();
             break;
+        case scens.story:
+            if (scens_ID != last_ID) {
+                story = new Story();
+                last_ID = scens_ID;
+            }
+            story.update();
+            break;
         case scens.chose:
-
             if (scens_ID != last_ID) {
                 chose = new Chose();
                 last_ID = scens_ID;

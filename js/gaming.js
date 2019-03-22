@@ -35,12 +35,12 @@ Gaming = function() {
     var score_style = new PIXI.TextStyle({
         fontFamily: 'Arial',
         fontSize: 64,
-         fontWeight: 800,
-        fill: ['#FF0088'], 
+        fontWeight: 800,
+        fill: ['#FF0088'],
     });
     this.score_text = new PIXI.Text("", score_style);
     this.score_text.x = 200;
-    this.score_text.y = 60;    
+    this.score_text.y = 60;
     this.score_text.style.lineHeight = 80;
     this.score_text.zIndex = -5;
     this.container.addChild(this.score_text);
@@ -87,7 +87,7 @@ Gaming = function() {
         return b.zIndex - a.zIndex
     });
     this.speed_text.text = '0 km/hr';
- this.score_text.text = "0";
+    this.score_text.text = "0";
 }
 
 
@@ -104,16 +104,20 @@ Gaming.prototype.update = function() {
         this.die();
     }
 
-    if (this.trap.get_trap_num < 3) {
-        if (Math.random() * 1000 < 10)
-            this.trap.addtrap(0);
+    if (this.trap.get_trap_num() == 0) {
+            this.trap.addtrap(Math.floor(Math.random() * 6.9) );
+    } else if (this.trap.get_trap_num() < 3) {
+
+        if (Math.random() * 1000 < 15){
+            this.trap.addtrap(Math.floor(Math.random() * 6.9) );
+        }
     } else {
         if (Math.random() * 1000 < 5)
-            this.trap.addtrap(0);
+            this.trap.addtrap(Math.floor(Math.random() * 6.9) );
     }
 
 
-    this.player.setground(this.trap.getground());
+    this.player.setground(this.trap.getground(), this.trap.getdeadline());
     this.player.update(this.leval_speed);
 
     this.score = Math.floor(this.timer / 100) * 100 * Math.floor(this.leval_speed * 10 - 9);
@@ -121,7 +125,7 @@ Gaming.prototype.update = function() {
 
         this.speed_text.text = Math.floor(this.leval_speed * 10 - 9) + 'km/hr';
         this.score_text.text = this.score;
-        score=this.score;
+        score = this.score;
     }
 
 
