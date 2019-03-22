@@ -47,6 +47,14 @@ window.onresize = resize;
 Main.prototype.loading = function() {
 
 
+    loader.add("menu_bgm", "sound/The_Big_Beat_80s.mp3");
+    loader.add("gaming_bgm", "sound/Powerup.mp3");
+    loader.add("chose_bgm", "sound/Alternate.mp3");
+    loader.add("jump_se", "sound/se/jump01.mp3");
+    loader.add("dead_se", "sound/se/powerdown07.mp3");
+    loader.add("button_se", "sound/se/poka01.mp3");
+
+
     loader.add("bg_gg", "images/bg_gg.png");
     loader.add("gg_face", "images/GG_face.png");
     loader.add("pug_face", "images/PUG_face.png");
@@ -81,13 +89,6 @@ loader.add("web_BT", "images/UI/web_button.png");
     loader.add("build", "images/build_sprites.json");
 
     loader.add("long_shot_building", "images/long_shot_building.json");
-
-    loader.add("menu_bgm", "sound/The_Big_Beat_80s.mp3");
-    loader.add("gaming_bgm", "sound/Powerup.mp3");
-    loader.add("chose_bgm", "sound/Alternate.mp3");
-    loader.add("jump_se", "sound/se/jump01.mp3");
-    loader.add("dead_se", "sound/se/powerdown07.mp3");
-    loader.add("button_se", "sound/se/poka01.mp3");
 
     loader.on("progress", loadProgressHandler)
     loader.load(this.setup.bind(this));
