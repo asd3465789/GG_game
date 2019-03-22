@@ -5,13 +5,13 @@ Gaming = function() {
     loader.resources.gaming_bgm.data.loop = true;
     loader.resources.gaming_bgm.data.play();
 
-    this.gaming = new PIXI.Container();
+    this.container = new PIXI.Container();
     this.leval_speed = 1;
-    this.gaming_bg = new Gaming_bg(this.gaming);
-    this.road_create = new Road_create(this.gaming);
-    this.long_shot = new Long_shot(this.gaming);
-    this.trap = new Trap(this.gaming);
-    this.player = new Player(this.gaming);
+    this.gaming_bg = new Gaming_bg(this.container);
+    this.road_create = new Road_create(this.container);
+    this.long_shot = new Long_shot(this.container);
+    this.trap = new Trap(this.container);
+    this.player = new Player(this.container);
 
 
 
@@ -25,24 +25,25 @@ Gaming = function() {
     });
 
     this.speed_text = new PIXI.Text("", speed_style);
-    this.speed_text.x = 1020;
+    this.speed_text.x = 1080;
     this.speed_text.y = 50;
     this.speed_text.style.lineHeight = 80;
     this.speed_text.zIndex = -5;
-    this.gaming.addChild(this.speed_text);
+    this.container.addChild(this.speed_text);
 
     this.score = 0;
     var score_style = new PIXI.TextStyle({
         fontFamily: 'Arial',
-        fontSize: 48,
+        fontSize: 64,
+         fontWeight: 800,
         fill: ['#FF0088'], 
     });
     this.score_text = new PIXI.Text("", score_style);
     this.score_text.x = 200;
-    this.score_text.y = 50;    
+    this.score_text.y = 60;    
     this.score_text.style.lineHeight = 80;
     this.score_text.zIndex = -5;
-    this.gaming.addChild(this.score_text);
+    this.container.addChild(this.score_text);
 
     console.log(this.score_text);
 
@@ -68,19 +69,19 @@ Gaming = function() {
     this.player_face.y = 100;
     this.player_face.scale.x = 0.4;
     this.player_face.scale.y = 0.4;
-    this.gaming.addChild(this.player_face);
-    this.gaming.interactive = true;
+    this.container.addChild(this.player_face);
+    this.container.interactive = true;
 
-    this.gaming.on('pointerdown', function() {
+    this.container.on('pointerdown', function() {
         controller.screen_click.active = true;
     });
 
-    this.gaming.on('pointerup', function() {
+    this.container.on('pointerup', function() {
         controller.screen_click.active = false;
     });
-    this.transition = new Transition(this.gaming, -1, false);
+    this.transition = new Transition(this.container, -1, false);
 
-    this.gaming.children.sort(function(a, b) {
+    this.container.children.sort(function(a, b) {
         a.zIndex = a.zIndex || 0;
         b.zIndex = b.zIndex || 0;
         return b.zIndex - a.zIndex
@@ -124,7 +125,7 @@ Gaming.prototype.update = function() {
     }
 
 
-    renderer.render(this.gaming);
+    renderer.render(this.container);
 }
 
 Gaming.prototype.getscore = function() {
@@ -135,5 +136,5 @@ Gaming.prototype.die = function() {
     this.leval_speed = 0;
     loader.resources.gaming_bgm.data.pause();
     loader.resources.gaming_bgm.data.currentTime = 0;
-    this.transition = new Transition(this.gaming, scens.end, true);
+    this.transition = new Transition(this.container, scens.end, true);
 }

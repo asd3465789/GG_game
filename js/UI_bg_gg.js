@@ -1,4 +1,4 @@
-Ui_bg_gg=function(menu){
+Ui_bg_gg = function(container) {
 
     var farTexture = PIXI.Texture.fromImage("bg_gg");
     this.bg = new PIXI.extras.TilingSprite(farTexture, app.screen.width, app.screen.height);
@@ -6,11 +6,11 @@ Ui_bg_gg=function(menu){
     this.bg.position.y = 0;
     this.bg.tilePosition.x = 0;
     this.bg.tilePosition.y = 0;
-    menu.addChild(this.bg);
+    container.addChild(this.bg);
 
 }
 
-Ui_bg_gg.prototype.update=function(){
+Ui_bg_gg.prototype.update = function() {
     this.bg.tilePosition.x += 1;
     this.bg.tilePosition.y += 1;
 

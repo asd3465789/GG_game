@@ -95,6 +95,7 @@ loader.add("web_BT", "images/UI/web_button.png");
 }
 
 function loadProgressHandler(loader, resource) {
+    loading=new Loading(loader.progress);
     console.log("loading: " + resource.url);
 
     console.log("progress: " + loader.progress + "%");
@@ -108,14 +109,7 @@ Main.prototype.setup = function() {
 
 Main.prototype.update = function() {
 
-    switch (scens_ID) {
-        case scens.loading:
-            if (scens_ID != last_ID) {
-                menu = new Menu();
-                last_ID = scens_ID;
-            }
-            menu.update();
-            break;
+    switch (scens_ID) {      
         case scens.menu:
             if (scens_ID != last_ID) {
                 menu = new Menu();

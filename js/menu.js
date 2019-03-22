@@ -1,18 +1,17 @@
 Menu = function() {
     loader.resources.menu_bgm.data.BGM_volume = 0;
-  //  loader.resources.menu_bgm.data.loop = true;
     loader.resources.menu_bgm.data.play();
 
-    this.menu = new PIXI.Container();
+    this.container = new PIXI.Container();
 
-    this.volume_control = new Volume_control(this.menu);
+    this.volume_control = new Volume_control(this.container);
 
 
     this.GG_title = PIXI.Sprite.fromImage('GG_title');
     this.GG_title.anchor.set(0.5);
     this.GG_title.x=app.screen.width / 2;
     this.GG_title.y = 300;
-    this.menu.addChild(this.GG_title);
+    this.container.addChild(this.GG_title);
 
 
     this.startBT = PIXI.Sprite.fromImage('start_button');
@@ -24,7 +23,7 @@ Menu = function() {
     this.startBT.tint = 0xFFFFFF;
     this.startBT.interactive = true;
     this.startBT.buttonMode = true;
-    this.startBT.menu = this.menu;
+    this.startBT.container = this.container;
     this.startBT.on('pointerdown', function() {
         this.tint = 0xAAAAAA;
 
@@ -36,7 +35,7 @@ Menu = function() {
         loader.resources.menu_bgm.data.currentTime = 0;
         loader.resources.menu_bgm.data.volume = 0;
 
-        this.transition = new Transition(this.menu, scens.chose, true);
+        this.transition = new Transition(this.container, scens.chose, true);
 
 
     });
@@ -46,15 +45,20 @@ Menu = function() {
 
     ;
 
-    this.menu.addChild(this.startBT);
+    this.container.addChild(this.startBT);
+
+    this.transition = new Transition(this.container, -1, false);
+
 
 }
 
 Menu.prototype.update = function() {
+
     if (loader.resources.menu_bgm.data.volume < BGM_maxvolume)
         loader.resources.menu_bgm.data.volume += 0.01;
     else
         loader.resources.menu_bgm.data.volume = BGM_maxvolume;
 
-    renderer.render(this.menu);
+    renderer.render(this.container);
+    
 }
