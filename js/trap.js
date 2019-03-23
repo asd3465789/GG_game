@@ -90,7 +90,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.Shole_w;
             Texture.h = trap_type.Shole_h;
             this.alltraps_width += trap_type.Shole_w;
-            this.alltraps_width += 50;
+            this.alltraps_width += 100;
             Texture.anchor.set(trap_type.Shole_anchor_x, 0);
             break;
         case 5:
