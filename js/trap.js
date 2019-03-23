@@ -73,7 +73,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.mot_w;
             Texture.h = trap_type.mot_h;
             this.alltraps_width += trap_type.mot_w;
-             this.alltraps_width += 130;
+             this.alltraps_width += 150;
             Texture.anchor.set(trap_type.mot_anchor_x, 0);
             break;
 
@@ -82,7 +82,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.hole_w;
             Texture.h = trap_type.hole_h;
             this.alltraps_width += trap_type.hole_w;
-             this.alltraps_width += 100;
+             this.alltraps_width += 150;
             Texture.anchor.set(trap_type.hole_anchor_x, 0);
             break;
         case 4:
@@ -90,7 +90,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.Shole_w;
             Texture.h = trap_type.Shole_h;
             this.alltraps_width += trap_type.Shole_w;
-            this.alltraps_width += 100;
+            this.alltraps_width += 150;
             Texture.anchor.set(trap_type.Shole_anchor_x, 0);
             break;
         case 5:
@@ -111,7 +111,7 @@ Trap.prototype.addtrap = function(ID) {
             break;
     }
 
-             this.alltraps_width += 30;
+             this.alltraps_width += 20;
     Texture.ID = ID;
 
     this.gaming.addChild(this.container);
