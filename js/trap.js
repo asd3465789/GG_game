@@ -90,7 +90,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.Shole_w;
             Texture.h = trap_type.Shole_h;
             this.alltraps_width += trap_type.Shole_w;
-            this.alltraps_width += 150;
+            this.alltraps_width += 200;
             Texture.anchor.set(trap_type.Shole_anchor_x, 0);
             break;
         case 5:
@@ -190,16 +190,13 @@ Trap.prototype.update = function(speed) {
             this.ontrapID += 1;
         }
 
-  console.log(this.ontrapID);
     }
 
     if (this.container.getChildAt(0).x < this.playerX - 650 && this.ontrapID != 0) {
-        console.log("remove");
+       
         this.container.removeChildAt(0);
         this.ontrapID -= 1;
         this.trap_num -= 1;
-        console.log(this.ontrapID);
-        console.log(this.trap_num);
 
     }
 
