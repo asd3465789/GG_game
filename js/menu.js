@@ -1,7 +1,5 @@
 Menu = function() {
-    loader.resources.menu_bgm.data.BGM_volume = 0;
-    loader.resources.menu_bgm.data.play();
-
+    
     this.container = new PIXI.Container();
 
     this.volume_control = new Volume_control(this.container);
@@ -48,6 +46,9 @@ Menu = function() {
     this.container.addChild(this.startBT);
 
     this.transition = new Transition(this.container, -1, false);
+    loader.resources.menu_bgm.data.BGM_volume = 0;
+    loader.resources.menu_bgm.data.play();
+
 
 
 }
