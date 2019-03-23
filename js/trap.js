@@ -98,7 +98,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.cones_w;
             Texture.h = trap_type.cones_h;
             this.alltraps_width += trap_type.cones_w;
-            this.alltraps_width += 100;
+            this.alltraps_width += 150;
             Texture.anchor.set(trap_type.cones_anchor_x, 0);
             break;
         case 6:
@@ -106,7 +106,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.Tcones_w;
             Texture.h = trap_type.Tcones_h;
             this.alltraps_width += trap_type.Tcones_w;
-            this.alltraps_width += 120;
+            this.alltraps_width += 150;
             Texture.anchor.set(trap_type.Tcones_anchor_x, 0);
             break;
     }
