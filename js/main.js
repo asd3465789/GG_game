@@ -91,7 +91,6 @@ Main.prototype.loading = function() {
     loader.add("negative_run", "images/negative_run.json");
     loader.add("road", "images/road_sprites.json");
     loader.add("trap", "images/trap_sprites.json");
-    loader.add("build", "images/build_sprites.json");
 
     loader.add("long_shot_building", "images/long_shot_building.json");
 
