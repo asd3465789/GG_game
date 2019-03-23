@@ -135,13 +135,13 @@ var trap_type = {
     mot_y: 450,
     mot_anchor_x: 0,
 
-    hole_w: 140,
-    hole_h: -230,
+    hole_w: 120,
+    hole_h: -100,
     hole_y: 500,
     hole_anchor_x: 0,
 
-    Shole_w: 50,
-    Shole_h: -230,
+    Shole_w: 30,
+    Shole_h: -100,
     Shole_y: 500,
     Shole_anchor_x: 0,
 
