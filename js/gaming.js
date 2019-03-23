@@ -45,8 +45,6 @@ Gaming = function() {
     this.score_text.zIndex = -5;
     this.container.addChild(this.score_text);
 
-    console.log(this.score_text);
-
     switch (who) {
         case 1:
             this.whoname = 'gg';
