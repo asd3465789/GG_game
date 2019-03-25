@@ -1,5 +1,5 @@
 Trap = function(gaming,space) {
-    this.space=sapce;
+    this.space=space;
     this.container = new PIXI.Container();
     this.container.zIndex = -2;
     this.gaming = gaming;
