@@ -1,4 +1,5 @@
 Trap = function(gaming,space) {
+    this.space=sapce;
     this.container = new PIXI.Container();
     this.container.zIndex = -2;
     this.gaming = gaming;
@@ -111,7 +112,7 @@ Trap.prototype.addtrap = function(ID) {
             break;
     }
 
-             this.alltraps_width += space;
+             this.alltraps_width += this.space;
     Texture.ID = ID;
 
     this.gaming.addChild(this.container);
