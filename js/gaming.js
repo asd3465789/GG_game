@@ -110,7 +110,7 @@ Gaming.prototype.update = function() {
             this.trap.addtrap(Math.floor(Math.random() * 6.9) );
         }
     } else {
-        if (Math.random() * 1000 < 5)
+        if (Math.random() * 1000 < 3)
             this.trap.addtrap(Math.floor(Math.random() * 6.9) );
     }
 
