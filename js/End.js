@@ -15,15 +15,15 @@ End = function() {
         this.faceID = 5;
         this.levalID = "F";
         this.words = "噢穴...";
-    } else if (score < 300000) {
+    } else if (score < 200000) {
         this.faceID = 4;
         this.levalID = "C";
         this.words = "安啦~從人生畢業前會先從麥胞畢業";
-    } else if (score < 600000) {
+    } else if (score < 300000) {
         this.faceID = 3;
         this.levalID = "B";
         this.words = "溫柔地推翻這個世界。";
-    } else if (score < 800000) {
+    } else if (score < 500000) {
         this.faceID = 2;
         this.levalID = "A";
         this.words = "我們都是共犯，也都寂寞。";
