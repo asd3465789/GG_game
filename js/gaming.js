@@ -111,11 +111,11 @@ Gaming.prototype.update = function() {
             this.trap.addtrap(Math.floor(Math.random() * 6.9) );
     } else if (this.trap.get_trap_num() < 3) {
 
-        if (Math.random() * 1000 < 10){
+        if (Math.random() * 1000 < 15){
             this.trap.addtrap(Math.floor(Math.random() * 6.9) );
         }
     } else {
-        if (Math.random() * 1000 < 3)
+        if (Math.random() * 1000 < 5)
             this.trap.addtrap(Math.floor(Math.random() * 6.9) );
     }
 
