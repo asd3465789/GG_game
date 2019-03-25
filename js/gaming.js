@@ -13,7 +13,7 @@ Gaming = function() {
     this.trap = new Trap(this.container);
     this.player = new Player(this.container);
 
-
+    this.space=30;
 
     this.timer = 0;
 
@@ -101,7 +101,12 @@ Gaming.prototype.update = function() {
     if (this.player.die()) {
         this.die();
     }
-
+    
+    if(this.score>180000)
+        space=70;
+    else if(this.score>250000)
+        space=100;
+    
     if (this.trap.get_trap_num() == 0) {
             this.trap.addtrap(Math.floor(Math.random() * 6.9) );
     } else if (this.trap.get_trap_num() < 3) {
