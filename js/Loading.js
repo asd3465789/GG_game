@@ -30,8 +30,7 @@ Loading.prototype.update=function(){
 
 	this.graphics.drawRect(100,550, 1080/100*this.progress, 40);
 	this.progress_text.text= this.progress;
-	if( this.progress==100)
-		//this.transition = new Transition(this.container, scens.menu, true);
+
 	renderer.render(this.container);
 	
 }

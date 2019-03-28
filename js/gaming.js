@@ -1,9 +1,7 @@
 Gaming = function() {
 
 
-    loader.resources.gaming_bgm.data.volume = BGM_maxvolume;
-    loader.resources.gaming_bgm.data.loop = true;
-    loader.resources.gaming_bgm.data.play();
+    gaming_BGM.play();
 
     this.container = new PIXI.Container();
     this.leval_speed = 1;
@@ -45,8 +43,6 @@ Gaming = function() {
     this.score_text.zIndex = -5;
     this.container.addChild(this.score_text);
 
-    console.log(this.score_text);
-
     switch (who) {
         case 1:
             this.whoname = 'gg';
@@ -73,12 +69,16 @@ Gaming = function() {
     this.container.interactive = true;
 
     this.container.on('pointerdown', function() {
-        controller.screen_click.active = true;
+
+         controller.screen_up.active = false;
+        controller.screen_down.active = true;
     });
 
     this.container.on('pointerup', function() {
-        controller.screen_click.active = false;
+         controller.screen_up.active = true;
+        controller.screen_down.active = false;        
     });
+
     this.transition = new Transition(this.container, -1, false);
 
     this.container.children.sort(function(a, b) {
@@ -88,6 +88,7 @@ Gaming = function() {
     });
     this.speed_text.text = '0 km/hr';
     this.score_text.text = "0";
+
 }
 
 
@@ -104,16 +105,28 @@ Gaming.prototype.update = function() {
         this.die();
     }
 
+    if (this.score < 100000)
+
+        this.space = 40;
+    else if (this.score < 150000)
+        this.space = 170;
+    else if (this.score < 200000)
+        this.space = 280;
+    else if (this.score < 350000)
+        this.space = 350;
+    else
+        this.space = 500;
+
     if (this.trap.get_trap_num() == 0) {
-            this.trap.addtrap(Math.floor(Math.random() * 6.9) );
+        this.trap.addtrap(Math.floor(Math.random() * 6.9), this.space);
     } else if (this.trap.get_trap_num() < 3) {
 
-        if (Math.random() * 1000 < 15){
-            this.trap.addtrap(Math.floor(Math.random() * 6.9) );
+        if (Math.random() * 1000 < 12) {
+            this.trap.addtrap(Math.floor(Math.random() * 6.9), this.space);
         }
     } else {
-        if (Math.random() * 1000 < 5)
-            this.trap.addtrap(Math.floor(Math.random() * 6.9) );
+        if (Math.random() * 1000 < 0.8)
+            this.trap.addtrap(Math.floor(Math.random() * 6.9), this.space);
     }
 
 
@@ -138,7 +151,6 @@ Gaming.prototype.getscore = function() {
 
 Gaming.prototype.die = function() {
     this.leval_speed = 0;
-    loader.resources.gaming_bgm.data.pause();
-    loader.resources.gaming_bgm.data.currentTime = 0;
+     gaming_BGM.stop();
     this.transition = new Transition(this.container, scens.end, true);
 }

@@ -14,23 +14,63 @@ End = function() {
     if (score < 100000) {
         this.faceID = 5;
         this.levalID = "F";
-        this.words = "噢穴...";
-    } else if (score < 300000) {
+        switch (Math.floor(Math.random() * 2.9)) {
+            case 0:
+                this.words = "噢穴...";
+                break;
+            case 1:
+                this.words = "我也好想吃起司脆薯雙牛堡...";
+                break;
+            case 2:
+                this.words = "我的吐司好像發霉了...";
+                break;
+        }
+
+
+
+
+    } else if (score < 200000) {
         this.faceID = 4;
         this.levalID = "C";
-        this.words = "安啦~從人生畢業前會先從麥胞畢業";
-    } else if (score < 600000) {
+        switch (Math.floor(Math.random() * 2.9)) {
+            case 0:
+                this.words = "安啦~從人生畢業前會先從麥胞畢業。";
+                break;
+            case 1:
+                this.words = "其實我幹話也沒那麼多。";
+                break;
+            case 2:
+                this.words = "無印毒品。";
+                break;
+        }
+
+    } else if (score < 400000) {
         this.faceID = 3;
         this.levalID = "B";
-        this.words = "溫柔地推翻這個世界。";
-    } else if (score < 800000) {
+        switch (Math.floor(Math.random() * 1.9)) {
+            case 0:
+                this.words = "卵子衝腦畫了一堆垃圾圖。";
+                break;
+            case 1:
+                this.words = "珍惜時間，遠離色鉛。";
+                break
+        }
+
+    } else if (score < 700000) {
         this.faceID = 2;
         this.levalID = "A";
         this.words = "我們都是共犯，也都寂寞。";
     } else {
         this.faceID = 1;
         this.levalID = "S";
-        this.words = "馬臉大ㄐㄐ宋依璇。";
+        switch (Math.floor(Math.random() * 1.9)) {
+            case 0:
+                this.words = "馬臉大ㄐㄐ宋依璇。";
+                break;
+            case 1:
+                this.words = "在別人不要ㄉ褲子口袋發現一百摳~";
+                break
+        }
     }
 
     var tale_style = new PIXI.TextStyle({
@@ -43,7 +83,7 @@ End = function() {
     this.score_text.x = 500;
     this.score_text.y = 420;
     this.score_text.style.lineHeight = 80;
-  //  this.score_text.zIndex = -5;
+    //  this.score_text.zIndex = -5;
     this.container.addChild(this.score_text);
     this.transition = new Transition(this.container, -1, false);
 
@@ -51,7 +91,7 @@ End = function() {
     this.leval_text.x = 840;
     this.leval_text.y = 420;
     this.leval_text.style.lineHeight = 80;
-  //  this.leval_text.zIndex = -5;
+    //  this.leval_text.zIndex = -5;
     this.container.addChild(this.leval_text);
     this.transition = new Transition(this.container, -1, false);
 
@@ -131,7 +171,7 @@ End = function() {
     this.web_BT.on('pointerdown', function() { this.tint = 0x555555; });
     this.web_BT.on('pointerup', function() {
         this.tint = 0xAAAAAA;
-        window.location.href='http://web3.nutc.edu.tw/~s1410622007/';
+        window.location.href = 'http://web3.nutc.edu.tw/~s1410622007/';
     });
     this.web_BT.on('pointerover', function() { this.tint = 0xAAAAAA; });
     this.web_BT.on('pointerout', function() { this.tint = 0xFFFFFF; });

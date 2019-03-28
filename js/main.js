@@ -2,8 +2,27 @@ var screen_size = [1280, 720];
 var ratio = screen_size[0] / screen_size[1];
 app = new PIXI.Application({ width: screen_size[0], height: screen_size[1] });
 loader = app.loader;
-BGM_maxvolume = 0.7;
+BGM_maxvolume = 0.1;
 SE_maxvolume = 0.7;
+
+menu_BGM= new Howl({
+        // 參數設定[註1]
+            src: [ "sound/The_Big_Beat_80s.mp3" ],
+            loop: false, // 無限循環
+            volume:BGM_maxvolume,           
+        });
+chose_BGM= new Howl({
+        // 參數設定[註1]
+            src: [ "sound/Alternate.mp3" ],
+            loop: false, // 無限循環
+            volume:BGM_maxvolume,           
+        });
+gaming_BGM= new Howl({
+        // 參數設定[註1]
+            src: [ "sound/Powerup.mp3" ],
+            loop: false, // 無限循環
+            volume:BGM_maxvolume,           
+        });
 
 score = 0;
 
@@ -54,6 +73,9 @@ Main.prototype.loading = function() {
     loader.add("jump_se", "sound/se/jump01.mp3");
     loader.add("dead_se", "sound/se/powerdown07.mp3");
     loader.add("button_se", "sound/se/poka01.mp3");
+    loader.add("word_se", "sound/se/poka02.mp3");
+    loader.add("open_door", "sound/se/room_door_O.mp3");
+    loader.add("close_door", "sound/se/door2_C.mp3");
 
 
     loader.add("bg_gg", "images/bg_gg.png");
@@ -69,6 +91,9 @@ Main.prototype.loading = function() {
     loader.add("house", "images/house.png");
 
     loader.add("gg_talk", "images/GG_talk.png");
+    loader.add("gg_talk2", "images/GG_talk2.png");
+    loader.add("gg_talk3", "images/GG_talk3.png");
+    loader.add("gg_talk4", "images/GG_talk4.png");
     loader.add("brother_talk", "images/Brother_talk.png");
 
     loader.add("restart_BT", "images/UI/restart_button.png");
@@ -91,7 +116,6 @@ Main.prototype.loading = function() {
     loader.add("negative_run", "images/negative_run.json");
     loader.add("road", "images/road_sprites.json");
     loader.add("trap", "images/trap_sprites.json");
-    loader.add("build", "images/build_sprites.json");
 
     loader.add("long_shot_building", "images/long_shot_building.json");
 

@@ -1,4 +1,5 @@
 Trap = function(gaming) {
+
     this.container = new PIXI.Container();
     this.container.zIndex = -2;
     this.gaming = gaming;
@@ -30,7 +31,7 @@ Trap = function(gaming) {
         var val = i < 10 ? '0' + i : i;
         this.traps.push(PIXI.Texture.fromFrame('trap_' + val + '.png'));
     }
-    this.addtrap(1);
+    this.addtrap(Math.floor(Math.random() * 6.9), 0);
 }
 
 
@@ -38,8 +39,8 @@ Trap.prototype.get_trap_num = function() {
     return this.trap_num;
 }
 
-Trap.prototype.addtrap = function(ID) {
-
+Trap.prototype.addtrap = function (ID, space) {
+    this.space = space;
     var Texture = new PIXI.Sprite(this.traps[ID]);
     this.trap_num ++;
     Texture.anchor.set(0, 1);
@@ -73,7 +74,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.mot_w;
             Texture.h = trap_type.mot_h;
             this.alltraps_width += trap_type.mot_w;
-             this.alltraps_width += 130;
+             this.alltraps_width += 200;
             Texture.anchor.set(trap_type.mot_anchor_x, 0);
             break;
 
@@ -82,7 +83,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.hole_w;
             Texture.h = trap_type.hole_h;
             this.alltraps_width += trap_type.hole_w;
-             this.alltraps_width += 100;
+             this.alltraps_width += 150;
             Texture.anchor.set(trap_type.hole_anchor_x, 0);
             break;
         case 4:
@@ -90,7 +91,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.Shole_w;
             Texture.h = trap_type.Shole_h;
             this.alltraps_width += trap_type.Shole_w;
-            this.alltraps_width += 50;
+            this.alltraps_width += 200;
             Texture.anchor.set(trap_type.Shole_anchor_x, 0);
             break;
         case 5:
@@ -98,7 +99,7 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.cones_w;
             Texture.h = trap_type.cones_h;
             this.alltraps_width += trap_type.cones_w;
-            this.alltraps_width += 100;
+            this.alltraps_width += 170;
             Texture.anchor.set(trap_type.cones_anchor_x, 0);
             break;
         case 6:
@@ -106,12 +107,12 @@ Trap.prototype.addtrap = function(ID) {
             Texture.w = trap_type.Tcones_w;
             Texture.h = trap_type.Tcones_h;
             this.alltraps_width += trap_type.Tcones_w;
-            this.alltraps_width += 120;
+            this.alltraps_width += 170;
             Texture.anchor.set(trap_type.Tcones_anchor_x, 0);
             break;
     }
 
-             this.alltraps_width += 30;
+             this.alltraps_width += this.space;
     Texture.ID = ID;
 
     this.gaming.addChild(this.container);
@@ -130,28 +131,28 @@ var trap_type = {
     car_y: 390,
     car_anchor_x: 0.04,
 
-    mot_w: 80,
+    mot_w: 65,
     mot_h: 80,
     mot_y: 450,
     mot_anchor_x: 0,
 
-    hole_w: 140,
-    hole_h: -230,
+    hole_w: 100,
+    hole_h: -300,
     hole_y: 500,
     hole_anchor_x: 0,
 
-    Shole_w: 50,
-    Shole_h: -230,
+    Shole_w: 25,
+    Shole_h: -200,
     Shole_y: 500,
     Shole_anchor_x: 0,
 
-    cones_w: 42,
-    cones_h: 80,
+    cones_w: 40,
+    cones_h: 70,
     cones_y: 450,
     cones_anchor_x: 0,
 
-    Tcones_w: 55,
-    Tcones_h: 100,
+    Tcones_w: 50,
+    Tcones_h: 90,
     Tcones_y: 430,
     Tcones_anchor_x: 0,
 };
@@ -190,16 +191,13 @@ Trap.prototype.update = function(speed) {
             this.ontrapID += 1;
         }
 
-  console.log(this.ontrapID);
     }
 
     if (this.container.getChildAt(0).x < this.playerX - 650 && this.ontrapID != 0) {
-        console.log("remove");
+       
         this.container.removeChildAt(0);
         this.ontrapID -= 1;
         this.trap_num -= 1;
-        console.log(this.ontrapID);
-        console.log(this.trap_num);
 
     }
 

@@ -1,9 +1,9 @@
 {
 "frames": {
 	"gg_run_01.png": {
-		"frame": {"x":174, "y":109, "w":45, "h":105},
-		"spriteSourceSize": {"x":0,"y":0,"w":45,"h":105},
-		"sourceSize": {"w":45,"h":105}
+		"frame": {"x":174, "y":109, "w":45, "h":108},
+		"spriteSourceSize": {"x":0,"y":0,"w":45,"h":108},
+		"sourceSize": {"w":45,"h":108}
 	},
 	"gg_run_02.png": {
 		"frame": {"x":174, "y":0, "w":45, "h":108},

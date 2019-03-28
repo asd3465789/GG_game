@@ -50,6 +50,8 @@ this.deadline=this.ground;
     this.isdying = false;
     this.isdead = false;
 
+    this.jumptime=0;
+
     loader.resources.jump_se.data.volume = SE_maxvolume;
     loader.resources.jump_se.data.playbackRate = 1.2;
     loader.resources.dead_se.data.volume = SE_maxvolume;
@@ -85,17 +87,27 @@ Player.prototype.die = function() {
 Player.prototype.update = function(speed) {
 
     if (!this.isdie) {
-        if ((controller.space.active || controller.screen_click.active) && !this.isJump) {
-
+        if ((controller.space.active || controller.screen_down.active) && !this.isJump) {
             loader.resources.jump_se.data.play();
-            this.y_velocity -= 50;
-            this.isJump = true;
+            if(this.y_velocity>-25)
+                this.y_velocity=-25;
+            else
+            this.y_velocity -= 4;
+            if(this.jumptime>9){
+                this.jumptime=0;                
+                this.isJump = true;
+            }
 
+            this.jumptime+=1;
+
+        }
+        if(this.y_velocity > -25){
+             this.isJump = true;
         }
 
         if (this.y >= this.ground && this.y_velocity >= 0) {
+             this.jumptime=0; 
             this.y_velocity = 0;
-            controller.screen_click.active = false;
             this.isJump = false;
             this.anim_run.visible = true;
             this.anim_jumpup.visible = false;
@@ -120,7 +132,7 @@ Player.prototype.update = function(speed) {
 
             }
 
-            this.y_velocity += 0.9;
+            this.y_velocity += 1;
 
         }
 

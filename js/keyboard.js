@@ -1,5 +1,6 @@
 controller = { //控制器
-    screen_click: { active: false},
+    screen_down: { active: false}, 
+    screen_up: { active: false},
     left: { active: false, state: false },
     right: { active: false, state: false },
     up: { active: false, state: false },
