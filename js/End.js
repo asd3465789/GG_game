@@ -1,7 +1,5 @@
 End = function() {
     this.container = new PIXI.Container();
-
-
     this.ui_bg_gg = new Ui_bg_gg(this.container);
 
     this.graphics = new PIXI.Graphics();
